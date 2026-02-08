@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------------
-// Copyright (c) 2014 @hirodotexe. All rights reserved.
+// Copyright (c) 2014 Hirotaka Nagashima. All rights reserved.
 //-----------------------------------------------------------------------------
 // 2016/11/03: Reconstructed with C++.
 // 2014/11/08: Project was created.

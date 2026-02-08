@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------------
-// Copyright (c) 2014 @hirodotexe. All rights reserved.
+// Copyright (c) 2014 Hirotaka Nagashima. All rights reserved.
 //-----------------------------------------------------------------------------
 
 #include "graphic.h"

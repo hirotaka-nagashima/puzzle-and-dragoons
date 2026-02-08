@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------------
-// Copyright (c) 2014 @hirodotexe. All rights reserved.
+// Copyright (c) 2014 Hirotaka Nagashima. All rights reserved.
 //-----------------------------------------------------------------------------
 
 #ifndef PUZZLE_AND_DRAGONS_GAME_H_
