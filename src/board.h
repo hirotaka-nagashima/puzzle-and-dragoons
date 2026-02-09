@@ -2,8 +2,8 @@
 // Copyright (c) 2014 Hirotaka Nagashima. All rights reserved.
 //-----------------------------------------------------------------------------
 
-#ifndef PUZZLE_AND_DRAGONS_BOARD_H_
-#define PUZZLE_AND_DRAGONS_BOARD_H_
+#ifndef PUZZLE_AND_DRAGOONS_BOARD_H_
+#define PUZZLE_AND_DRAGOONS_BOARD_H_
 
 class Board {
 public:
@@ -77,4 +77,4 @@ private:
   int board_[kArraySize];
 };
 
-#endif  // PUZZLE_AND_DRAGONS_BOARD_H_
+#endif  // PUZZLE_AND_DRAGOONS_BOARD_H_

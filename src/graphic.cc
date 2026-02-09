@@ -23,7 +23,7 @@ void Graphic::Initialize() {
   }
 
   window = SDL_CreateWindow(
-      "Puzzle & Dragons",
+      "Puzzle & Dragoons",
       SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
       kWidthWindow, kHeightWindow, 0);
   if (!window) {

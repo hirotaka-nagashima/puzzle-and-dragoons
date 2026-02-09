@@ -2,8 +2,8 @@
 // Copyright (c) 2014 Hirotaka Nagashima. All rights reserved.
 //-----------------------------------------------------------------------------
 
-#ifndef PUZZLE_AND_DRAGONS_GRAPHIC_H_
-#define PUZZLE_AND_DRAGONS_GRAPHIC_H_
+#ifndef PUZZLE_AND_DRAGOONS_GRAPHIC_H_
+#define PUZZLE_AND_DRAGOONS_GRAPHIC_H_
 
 #include <SDL.h>
 #include <SDL_image.h>  // Display images.
@@ -47,4 +47,4 @@ private:
   TTF_Font *font;
 };
 
-#endif  // PUZZLE_AND_DRAGONS_GRAPHIC_H_
+#endif  // PUZZLE_AND_DRAGOONS_GRAPHIC_H_

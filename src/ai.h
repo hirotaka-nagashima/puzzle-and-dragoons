@@ -2,8 +2,8 @@
 // Copyright (c) 2014 Hirotaka Nagashima. All rights reserved.
 //-----------------------------------------------------------------------------
 
-#ifndef PUZZLE_AND_DRAGONS_AI_H_
-#define PUZZLE_AND_DRAGONS_AI_H_
+#ifndef PUZZLE_AND_DRAGOONS_AI_H_
+#define PUZZLE_AND_DRAGOONS_AI_H_
 
 #include <map>
 #include <vector>
@@ -34,4 +34,4 @@ private:
   std::vector<int> DetermineStarts(const Board &board) const;
 };
 
-#endif  // PUZZLE_AND_DRAGONS_AI_H_
+#endif  // PUZZLE_AND_DRAGOONS_AI_H_

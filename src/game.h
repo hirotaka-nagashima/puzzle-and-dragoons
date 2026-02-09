@@ -2,8 +2,8 @@
 // Copyright (c) 2014 Hirotaka Nagashima. All rights reserved.
 //-----------------------------------------------------------------------------
 
-#ifndef PUZZLE_AND_DRAGONS_GAME_H_
-#define PUZZLE_AND_DRAGONS_GAME_H_
+#ifndef PUZZLE_AND_DRAGOONS_GAME_H_
+#define PUZZLE_AND_DRAGOONS_GAME_H_
 
 #include "board.h"
 #include "graphic.h"
@@ -24,4 +24,4 @@ private:
   Graphic graphic_;
 };
 
-#endif  // PUZZLE_AND_DRAGONS_GAME_H_
+#endif  // PUZZLE_AND_DRAGOONS_GAME_H_
