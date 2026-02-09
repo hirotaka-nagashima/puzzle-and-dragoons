@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // Copyright (c) 2014 Hirotaka Nagashima. All rights reserved.
 //-----------------------------------------------------------------------------
 
@@ -38,6 +38,7 @@ private:
   void ClearScreen();
   void Display();
 
+  SDL_Window *window;
   SDL_Surface *video_surface;
   SDL_Surface *image_orb;
   SDL_Surface *image_orb_small;

@@ -1,8 +1,9 @@
-﻿//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // Copyright (c) 2014 Hirotaka Nagashima. All rights reserved.
 //-----------------------------------------------------------------------------
 
 #include "graphic.h"
+#include <cstdio>
 
 const int Graphic::kImageSizeOrb = 90;
 const int Graphic::kWidthWindow = Board::kWidth * kImageSizeOrb;
@@ -21,21 +22,25 @@ void Graphic::Initialize() {
     exit(-1);
   }
 
-  SDL_Surface *returned_value = SDL_SetVideoMode(
-      kWidthWindow, kHeightWindow, 16, SDL_HWSURFACE);
-  if (NULL == returned_value) {
+  window = SDL_CreateWindow(
+      "Puzzle & Dragons",
+      SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+      kWidthWindow, kHeightWindow, 0);
+  if (!window) {
+    fprintf(stderr, "ERROR: %s\n", SDL_GetError());
+    exit(-1);
+  }
+  video_surface = SDL_GetWindowSurface(window);
+  if (!video_surface) {
     fprintf(stderr, "ERROR: %s\n", SDL_GetError());
     exit(-1);
   }
 
-  SDL_WM_SetCaption("Puzzle & Dragons", "Puzzle & Dragons");
-  video_surface = SDL_GetVideoSurface();
-
   // Load images.
-  image_orb = IMG_Load("resources/orb.png");
-  image_orb_small = IMG_Load("resources/orb_small.png");
-  image_overlayed_orb_small = IMG_Load("resources/overlayed_orb_small.png");
-  image_result = IMG_Load("resources/result.png");
+  image_orb = IMG_Load("src/resources/orb.png");
+  image_orb_small = IMG_Load("src/resources/orb_small.png");
+  image_overlayed_orb_small = IMG_Load("src/resources/overlayed_orb_small.png");
+  image_result = IMG_Load("src/resources/result.png");
   if (!image_orb || !image_result || !image_orb_small ||
       !image_overlayed_orb_small) {
     fprintf(stderr, "ERROR: %s\n", IMG_GetError());
@@ -43,7 +48,7 @@ void Graphic::Initialize() {
   }
 
   // Load a font.
-  font = TTF_OpenFont("resources/font.ttf", 40);
+  font = TTF_OpenFont("src/resources/font.ttf", 40);
   if (!font) {
     fprintf(stderr, "ERROR: %s\n", TTF_GetError());
     exit(-1);
@@ -57,7 +62,7 @@ void Graphic::Terminate() {
   SDL_FreeSurface(image_orb_small);
   SDL_FreeSurface(image_overlayed_orb_small);
   SDL_FreeSurface(image_result);
-  SDL_FreeSurface(video_surface);
+  SDL_DestroyWindow(window);
 
   TTF_Quit();
 
@@ -93,8 +98,8 @@ void Graphic::DisplayBoard(const Board &board, int current_position) {
 void Graphic::DisplayResult(const Board::Score &score, int max_combos) {
   // Convert given score to string.
   char score_string[30];
-  sprintf_s(score_string, "%d/%d  COMBOS",
-            score.sum_combos, max_combos);
+  snprintf(score_string, sizeof(score_string), "%d/%d  COMBOS",
+           score.sum_combos, max_combos);
 
   // Overlay a background.
   DrawGraph(image_result, 0, 0);
@@ -114,9 +119,12 @@ void Graphic::DisplayResult(const Board::Score &score, int max_combos) {
   Display();
 }
 
+namespace {
+enum IdStatus { kIdNone = -1 };
+}
+
 void Graphic::MoveOrbs(bool *is_moving, Board *board) const {
-  static enum IdStatus { kNone = -1 };
-  static int past_id = kNone;
+  static int past_id = kIdNone;
   SDL_Event event;
 
   while (true) {
@@ -129,7 +137,7 @@ void Graphic::MoveOrbs(bool *is_moving, Board *board) const {
       break;
     } else if (event.type == SDL_MOUSEBUTTONUP) {
       *is_moving = false;
-      past_id = kNone;
+      past_id = kIdNone;
       break;
     }
 
@@ -142,7 +150,7 @@ void Graphic::MoveOrbs(bool *is_moving, Board *board) const {
           (y / kImageSizeOrb + 1) * Board::kArrayWidth;
 
       // Swap orbs as needed.
-      if (past_id == kNone) {  // Need to initialize.
+      if (past_id == kIdNone) {  // Need to initialize.
         past_id = mouse_position;
       } else if (mouse_position != past_id) {  // Any orb was moved.
         board->Swap(mouse_position, past_id);
@@ -216,10 +224,9 @@ void Graphic::CheckClose() const {
 
 void Graphic::ClearScreen() {
   // Draw a white plane.
-  SDL_FillRect(video_surface, 0, 0xffff);
+  SDL_FillRect(video_surface, NULL, 0xffffff);
 }
 
 void Graphic::Display() {
-  // Dump buffer.
-  SDL_Flip(video_surface);
+  SDL_UpdateWindowSurface(window);
 }
