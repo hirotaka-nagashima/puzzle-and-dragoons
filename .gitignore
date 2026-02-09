@@ -1,0 +1,10 @@
+# source files of resources
+src/resources/*.psd
+
+# non-licensed files
+src/resources/font.ttf
+
+# other files
+.DS_Store
+*.o
+app
